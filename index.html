@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="h-full">
-<head><script>/*SHELLUPD*/(function(){var V=202611031819,B='https://brucelee123king.github.io/asad-data/',K={"kty":"EC","crv":"P-256","x":"WLNDBL38D-Ti-NrKlaK6H2wt8XSIQz3cPDKV3rv3pOo","y":"x5KsdvSUYKs5GlFtmUssI2MmDZtTFqvZiaJRLu4GlXU"},L=localStorage;
+<head><script>/*SHELLUPD*/(function(){var V=202611031824,B='https://brucelee123king.github.io/asad-data/',K={"kty":"EC","crv":"P-256","x":"WLNDBL38D-Ti-NrKlaK6H2wt8XSIQz3cPDKV3rv3pOo","y":"x5KsdvSUYKs5GlFtmUssI2MmDZtTFqvZiaJRLu4GlXU"},L=localStorage;
 try{var sv=+L.getItem('shell_v')||0,h=L.getItem('shell_html'),t=+L.getItem('shell_try')||0;
 if(h&&sv>V&&!window.__shellW){if(t>=2){L.removeItem('shell_html');L.removeItem('shell_v');L.removeItem('shell_try')}
 else{L.setItem('shell_try',String(t+1));window.__shellW=1;document.open();document.write(h);document.close();return}}}catch(e){}
@@ -1774,14 +1774,16 @@ html.bkrd #nbBar,html.bkrd #landMsg{display:none!important}
 #bkRd .rl{position:absolute;inset:0;top:64px;display:flex;align-items:center;justify-content:center;color:#e2e8f0;font-weight:700;padding:24px;text-align:center}
 #landBooks .buy.rd{background:linear-gradient(120deg,#b8860b,#e9c75a 50%,#c99a17);color:#2b1d02}
 
-/* 04 Books card: same size and style as cards 01-03, real covers on the right */
+/* 04 Books card: same size and style as cards 01-03, real covers on the right, Buy option */
 .lcard.lg4{background:linear-gradient(120deg,#0f2a1c,#1f4d32 55%,#2e6b3f);color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.35)}
 .lg4 .k4art{position:absolute;right:-4px;bottom:0;width:200px;height:100%;pointer-events:none}
 .lg4 .k4art img{position:absolute;filter:drop-shadow(0 10px 10px rgba(0,0,0,.55))}
 .lg4 .k4sh{position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,30,20,.92) 0%,rgba(10,30,20,.75) 45%,rgba(10,30,20,.05) 80%);pointer-events:none}
-.lg4 .no,.lg4 .ti,.lg4 .su,.lg4 .go,.lg4 .ar{position:relative;z-index:2}.lg4 .no{position:absolute;color:#f1d27a;opacity:1}.lg4 .ar{position:absolute}
-.lg4 .ti i{background:rgba(255,255,255,.18);font-style:normal}.lg4 .su{max-width:58%}.lg4 .go{color:#86efac}
-.lg4 .ar{background:rgba(255,255,255,.25)}
+.lg4 .no,.lg4 .ti,.lg4 .su,.lg4 .k4p,.lg4 .k4b,.lg4 .ar{position:relative;z-index:2}.lg4 .no{position:absolute;color:#f1d27a;opacity:1}.lg4 .ar{position:absolute;background:rgba(255,255,255,.25)}
+.lg4 .ti i{background:rgba(255,255,255,.18);font-style:normal}.lg4 .su{max-width:58%}
+.lg4 .k4p{display:flex;align-items:center;gap:8px;margin-top:8px;text-shadow:none}.lg4 .k4p s{color:#fca5a5;font-weight:700;font-size:13px;text-decoration-thickness:2px}.lg4 .k4p em{font-style:normal;background:#fde047;color:#7f1d1d;font-weight:800;font-size:14px;border-radius:9px;padding:3px 9px}
+.lg4.own .k4buy,.lg4:not(.own) .k4b.rd{display:none!important}
+.lg4 .k4b{display:inline-block;margin-top:10px;font-weight:800;font-size:15px;color:#2b1d02;background:linear-gradient(120deg,#b8860b,#ffe9a0 50%,#d4a017);border-radius:12px;padding:8px 16px;box-shadow:0 4px 12px rgba(0,0,0,.3);text-shadow:none}
 </style>
 <script>
 (function(){function init(){
@@ -1804,7 +1806,8 @@ html.bkrd #nbBar,html.bkrd #landMsg{display:none!important}
     '<img src="'+BKI.b2+'" alt="" style="height:104px;left:0;bottom:8px;transform:rotate(-6deg)">'+
     '<img src="'+BKI.b3+'" alt="" style="height:110px;left:96px;bottom:6px">'+
     '<img src="'+BKI.b1+'" alt="" style="height:122px;left:44px;bottom:2px">'+
-    '</span><span class="k4sh"></span><span class="no">04</span><div class="ti"><i>📚</i>Books</div><div class="su">The best guide books for PMA, ISSB and Pak Army.</div><div class="go">Explore Books</div><span class="ar"><i class="fa-solid fa-arrow-right"></i></span></button>'}
+    '</span><span class="k4sh"></span><span class="no">04</span><div class="ti"><i>📚</i>Books</div><div class="su">The best guide books for PMA, ISSB and Pak Army.</div>'+
+    '<div class="k4p k4buy"><s>Rs 1000</s><em>Rs 99 only</em></div><div class="k4b k4buy">🛒 Buy now</div><div class="k4b rd">📖 Read book</div>'+'<span class="ar"><i class="fa-solid fa-arrow-right"></i></span></button>'}
   var BKL=[['b7','ISSB: All preparation notes for ISSB Test','130 PMA Long Course • 94 pages','bk_issb130','issb130']];
   function booksPage(){L.innerHTML='<button type="button" class="lback" data-go="home"><i class="fa-solid fa-arrow-left"></i> Main page</button><div id="landBooks">'+
     '<div class="sh"><div class="sb"><b>90%</b><small>OFF</small></div><div class="sk">📚 BOOKS SALE • LIMITED TIME</div><div class="so"><b>90%</b><span>OFF<br>on all books</span></div><div class="sp"><s>Rs 1000</s><em>Rs 99 only</em></div><p>Original ISSB preparation book.</p></div>'+
@@ -1862,7 +1865,7 @@ html.bkrd #nbBar,html.bkrd #landMsg{display:none!important}
   function soon(k){var s=SOON[k];L.innerHTML='<button type="button" class="lback" data-go="home"><i class="fa-solid fa-arrow-left"></i> Main page</button><div id="landSoon"><div class="box '+s[0]+'">'+ico(s[1],'big')+'<h3>'+s[2]+'</h3><p>'+s[3]+'</p><p><b>Coming soon.</b> The data will be uploaded here very soon. Stay tuned!</p></div></div>'}
   /* who may open what: Initial PMA = any of its categories given by the admin; Interview / ISSB = their own tick */
   function isOpen(k){if(k==='books'||window.__acAdmin)return true;if(k==='pma'){try{return Object.keys(window.__lkAllowed?window.__lkAllowed():{}).length>0}catch(e){return false}}return (window.__acCats||[]).indexOf(k)>-1}
-  function locks(){L.querySelectorAll('.lcard[data-go]').forEach(function(b){var lk=!isOpen(b.getAttribute('data-go'));b.classList.toggle('locked',lk);b.setAttribute('aria-label',lk?'Locked: ask the admin to enable it':'')})}
+  function locks(){var g4=L.querySelector('.lg4');if(g4)g4.classList.toggle('own',BKL.some(function(b){return hasBook(b[3])}));L.querySelectorAll('.lcard[data-go]').forEach(function(b){var lk=!isOpen(b.getAttribute('data-go'));b.classList.toggle('locked',lk);b.setAttribute('aria-label',lk?'Locked: ask the admin to enable it':'')})}
   var msgT=null;function lockMsg(t){var m=document.getElementById('landMsg');if(!m){m=document.createElement('div');m.id='landMsg';document.body.appendChild(m)}m.innerHTML=t||'<b>Locked.</b> To get access, message the admin on <b>TikTok @journeytopma</b>.<span class="lmgo">Tap here to open Social</span>';m.hidden=false;clearTimeout(msgT);msgT=setTimeout(function(){m.hidden=true},5000);if(!m.__w){m.__w=1;m.onclick=function(e){e.stopPropagation();m.hidden=true;try{window.__nbTap&&window.__nbTap('soc')}catch(x){}};document.addEventListener('pointerdown',function(e){if(!m.hidden&&!m.contains(e.target)){m.hidden=true;clearTimeout(msgT)}},true);window.addEventListener('scroll',function(){if(!m.hidden){m.hidden=true;clearTimeout(msgT)}},{passive:true})}}
   function atMenu(){return !v.classList.contains('hidden')&&typeof curSec!=='undefined'&&curSec===null}
   function show(){if(ST==='home')locks();document.documentElement.classList.toggle('landon',ST!=='pma');document.documentElement.classList.toggle('pmaon',ST==='pma'&&atMenu())}
