@@ -21,6 +21,7 @@ textarea{min-height:110px}.badge{background:var(--no);color:#fff;border-radius:9
 .cp{display:inline-block;border-radius:999px;padding:3px 10px;font-size:12.5px;font-weight:800}.cp.i{background:#fde68a;color:#78350f}.cp.v{background:#bfdbfe;color:#1e3a8a}.cp.s{background:#fed7aa;color:#7c2d12}.cp.n{background:#e2e8f0;color:#334155}
 .acc .fl{margin-top:10px;font-size:13px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 #msg{position:sticky;top:6px;z-index:5}.msg{border-radius:10px;padding:10px;font-size:14px;font-weight:600;background:#0f172a;color:#fff;margin:6px 0}
+.gtab{display:flex;gap:6px;margin:10px 0 12px;flex-wrap:wrap}.gtab button{border:1.5px solid #cbd5e1;background:#fff;color:#0f172a;border-radius:99px;padding:8px 14px;font-weight:800;font-size:13px;cursor:pointer}.gtab button span{background:#e2e8f0;border-radius:99px;padding:1px 8px;margin-left:4px;font-size:12px}.gtab button.on{background:#0f172a;color:#fff;border-color:#0f172a}.gtab button.on span{background:#ffffff33}
 </style></head><body>
 <button type="button" id="thBtn" aria-label="Light or dark mode"></button>
 <script>(function(){var d=document.documentElement,b=document.getElementById('thBtn'),k='adm_theme',v=null;try{v=localStorage.getItem(k)}catch(e){}
@@ -160,7 +161,7 @@ FB.onAuthStateChanged(auth,function(u){
   $('login').style.display='none';$('app').style.display='block';load()});
 var IDLE=30*60*1000,lastAct=Date.now();['click','keydown','touchstart','scroll'].forEach(function(e){document.addEventListener(e,function(){lastAct=Date.now()},{passive:true})});
 setInterval(function(){if(auth.currentUser&&Date.now()-lastAct>IDLE){FB.signOut(auth);say('You were logged out after 30 minutes without use. Sign in again.',1)}},30000);
-var USERS=[],MSGS={},DAYS={},DEVS={},PROS=[];
+var USERS=[],MSGS={},DAYS={},DEVS={},PROS=[];var PG='all';document.addEventListener('click',function(e){var t=e.target.closest&&e.target.closest('[data-pg]');if(!t)return;PG=t.getAttribute('data-pg');draw();try{filt()}catch(x){}});
 function pdate(t){try{return t.toDate().toLocaleString()}catch(e){return ''}}
 function pdob(v){var m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(v||'');if(!m)return v||'';var a=new Date(+m[1],m[2]-1,+m[3]),n=new Date(),y=n.getFullYear()-a.getFullYear();if(n<new Date(n.getFullYear(),m[2]-1,+m[3]))y--;return a.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})+' ('+y+' years)'}
 function proCard(p){var nm=((p.fn||'')+' '+(p.ln||'')).trim()||'(no name)',ph=p.ph?'+92 '+p.ph:'No number',img=/^data:image\/jpeg;base64,/.test(p.photo||'')?p.photo:'';
@@ -217,7 +218,8 @@ function draw(){
   $('nReq').textContent=p.length;$('nUsr').textContent=o.length;try{accDraw()}catch(e){}
   $('pReq').innerHTML='<h2>People waiting for approval</h2>'+(p.length?p.map(card).join(''):'<div class="mu">Nobody is waiting.</div>');
   var ps=PROS.slice().sort(function(a,b){var x=a.t&&a.t.toMillis?a.t.toMillis():0,y=b.t&&b.t.toMillis?b.t.toMillis():0;return y-x});$('nPro').textContent=ps.length;
-  $('pPro').innerHTML='<h2>User details</h2><div class="mu">Details people filled in My Profile. Tap a person to see everything.</div>'+(ps.length?ps.map(proCard).join(''):'<div class="mu" style="margin-top:10px">Nobody has filled the profile yet.</div>');
+  var gm=function(p){return /^m/i.test(p.gen||'')?'m':/^f/i.test(p.gen||'')?'f':'o'},gc={all:ps.length,m:0,f:0,o:0};ps.forEach(function(p){gc[gm(p)]++});var gs=ps.filter(function(p){return PG==='all'||gm(p)===PG});
+  $('pPro').innerHTML='<h2>User details</h2><div class="mu">Details people filled in My Profile. Tap a person to see everything.</div><div class="gtab">'+[['all','All'],['m','👨 Male'],['f','👩 Female']].concat(gc.o?[['o','Not given']]:[]).map(function(t){return '<button type="button" data-pg="'+t[0]+'" class="'+(PG===t[0]?'on':'')+'">'+t[1]+' <span>'+gc[t[0]]+'</span></button>'}).join('')+'</div>'+(gs.length?gs.map(proCard).join(''):'<div class="mu" style="margin-top:10px">'+(ps.length?'Nobody in this group yet.':'Nobody has filled the profile yet.')+'</div>');
   $('pUsr').innerHTML='<h2>Approved and blocked people</h2><div class="mu">Oldest first: the first person who joined is at the top.</div>'+(o.length?o.map(card).join(''):'<div class="mu">No one yet.</div>');filt();try{onNow()}catch(e){}}
 document.addEventListener('click',function(e){var b=e.target.closest('button[data-a]');if(!b)return;var c=b.closest('.card'),id=c.getAttribute('data-id'),a=b.getAttribute('data-a');
   var cats=[];[].slice.call(c.querySelectorAll('input[data-g]')).forEach(function(i){if(!i.checked)return;var g=i.getAttribute('data-g');if(g==='ipma')CATS.forEach(function(x){cats.push(x[0])});else cats.push(g)});USERS.forEach(function(u){if(u.id===id)(u.cats||[]).forEach(function(x){if(/^bk_/.test(x)&&cats.indexOf(x)<0)cats.push(x)})});
