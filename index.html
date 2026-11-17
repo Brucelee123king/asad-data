@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="h-full">
-<head><script>/*SHELLUPD*/(function(){var V=202611171307,B='https://brucelee123king.github.io/asad-data/',K={"kty":"EC","crv":"P-256","x":"WLNDBL38D-Ti-NrKlaK6H2wt8XSIQz3cPDKV3rv3pOo","y":"x5KsdvSUYKs5GlFtmUssI2MmDZtTFqvZiaJRLu4GlXU"},L=localStorage;
+<head><script>/*SHELLUPD*/(function(){var V=202611171314,B='https://brucelee123king.github.io/asad-data/',K={"kty":"EC","crv":"P-256","x":"WLNDBL38D-Ti-NrKlaK6H2wt8XSIQz3cPDKV3rv3pOo","y":"x5KsdvSUYKs5GlFtmUssI2MmDZtTFqvZiaJRLu4GlXU"},L=localStorage;
 try{var sv=+L.getItem('shell_v')||0,h=L.getItem('shell_html'),t=+L.getItem('shell_try')||0;
 if(h&&sv>V&&!window.__shellW){if(t>=2){L.removeItem('shell_html');L.removeItem('shell_v');L.removeItem('shell_try')}
 else{L.setItem('shell_try',String(t+1));window.__shellW=1;document.open();document.write(h);document.close();return}}}catch(e){}
@@ -5120,7 +5120,7 @@ function BOOT(D){
     h+='<div class="itl">Tests <span>'+dn+' of '+T.length+' done</span></div><div class="wsg">';
     T.forEach(function(t,i){var v=opiSv(i),d=v&&v.done,pr=v&&!v.done&&v.ans?Object.keys(v.ans).length:0;h+='<button type="button" class="wsc opk'+(d?' dn':'')+'" data-opt="'+i+'"><span class="n">'+(d?'✓':i+1)+'</span><div><b>Test '+(i+1)+'</b><small>'+(pr?pr+' of '+t.length+' · continue':t.length+' · '+Math.round(opiLim(i)/60)+' min')+'</small></div></button>'});
     h+='</div><div class="itl">Key tips <span>'+OPT.length+'</span></div>'+OPT.map(function(q){return '<div class="itq"><span>'+q[0]+'</span><div><b>'+q[1]+'</b><small>'+q[2]+'</small></div></div>'}).join('');
-    var x=O(D.opi);if(A(x.tips).length)h+='<div class="itl">More about OPI <span>'+A(x.tips).length+'</span></div>'+A(x.tips).map(function(t){return '<div class="itq"><span>•</span><div><small>'+esc(t)+'</small></div></div>'}).join('');
+    h+='<div class="itl">More about OPI <span>6</span></div><div class="itq" style="display:block"><small style="display:block;margin:3px 0">• OPI = Occupational Personality Inventory, like the Big Five test.</small><small style="display:block;margin:3px 0">• About 150 statements in 30–40 minutes.</small><small style="display:block;margin:3px 0">• 7 choices: Strongly Disagree … Strongly Agree. Pick one.</small><small style="display:block;margin:3px 0">• It cross-checks your other psych tests.</small><small style="display:block;margin:3px 0">• Same ideas repeat in new words, so stay consistent.</small><small style="display:block;margin:3px 0">• No preparation needed: be honest and quick.</small></div>';
     return h+'</div></div>'}
   function opiSave(){try{localStorage.setItem(opiKey(OP.n),JSON.stringify({ans:OP.ans,i:OP.i,used:OP.used+Math.floor((Date.now()-OP.t0)/1000),done:OP.done}))}catch(e){}}
   function opiLeft(){return Math.max(0,OP.lim-OP.used-Math.floor((Date.now()-OP.t0)/1000))}
@@ -5190,7 +5190,7 @@ function BOOT(D){
     if((b=t.closest('[data-cset]'))){var cs=+b.getAttribute('data-cset');ptrStart(cs,picList().slice(cs*3,cs*3+3),'pic');return}
     if((b=t.closest('[data-crnd]'))){var CL=picList().slice();for(var cj=CL.length-1;cj>0;cj--){var ck2=Math.floor(Math.random()*(cj+1)),ct=CL[cj];CL[cj]=CL[ck2];CL[ck2]=ct}ptrStart(null,CL.slice(0,3),'pic');return}
     if((b=t.closest('[data-opt]'))){var on=+b.getAttribute('data-opt'),sv=opiSv(on);if(sv&&sv.done)sv=null;OP={n:on,L:opiT()[on],ans:(sv&&sv.ans)||{},i:(sv&&sv.i)||0,used:(sv&&sv.used)||0,t0:Date.now(),lim:opiLim(on),done:false};push('opit');return}
-    if((b=t.closest('[data-opa]'))){if(OP){OP.ans[OP.i]=+b.getAttribute('data-opa');opiPause();var oi=OP.i;draw(true);setTimeout(function(){if(OP&&!OP.done&&OP.i===oi&&oi<OP.L.length-1&&cur()==='opit'){OP.i++;draw(true)}},280)}return}
+    if((b=t.closest('[data-opa]'))){if(OP){OP.ans[OP.i]=+b.getAttribute('data-opa');opiPause();draw(true)}return}
     if((b=t.closest('[data-opv]'))){if(OP){OP.i=Math.max(0,Math.min(OP.L.length-1,OP.i+(+b.getAttribute('data-opv'))));opiPause();draw(true)}return}
     if((b=t.closest('[data-opf]'))){if(OP)opiFin();return}
     if((b=t.closest('[data-pset]'))){var ps=+b.getAttribute('data-pset');ptrStart(ps,ptrList().slice(ps*5,ps*5+5));return}
