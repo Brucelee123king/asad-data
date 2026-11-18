@@ -40,7 +40,7 @@ textarea{min-height:110px}.badge{background:var(--no);color:#fff;border-radius:9
  <div id="pKey" style="display:none">
   <h2>Password</h2><div class="mu">One password for each preparation. The Initial PMA Preparation password opens all its categories. The app gets them from here for approved people; nobody types them. Type the passwords I gave you, then press Save.</div>
   <div class="card" hidden><textarea id="paste"></textarea><div class="row"><button id="bFill">Fill the boxes</button></div></div>
-  <div id="keyBoxes"></div><div class="row"><button class="k" id="bSaveKeys">Save passwords</button></div>
+  <div id="keyBoxes"></div><div class="row"><button class="k" id="bSaveKeys">Save passwords</button></div><div class="card" style="margin-top:10px"><b>🔐 Data lock test</b><div class="mu">Checks that the ISSB / Interview data lock key in Firebase is correct.</div><div class="row"><button class="k" id="bLzTest">Test data lock</button></div><div id="lzRes" class="mu"></div></div>
  </div>
 </div>
 <script src="fb.js"></script>
@@ -49,6 +49,12 @@ textarea{min-height:110px}.badge{background:var(--no);color:#fff;border-radius:9
 var ADMIN='asadullah75t@gmail.com',CFG={"apiKey": "AIzaSyAmvsyy3lNoqZi7vLHnfY-2wScyxir2SpU", "authDomain": "asadullah-notes.firebaseapp.com", "projectId": "asadullah-notes", "storageBucket": "asadullah-notes.firebasestorage.app", "messagingSenderId": "497117042188", "appId": "1:497117042188:web:9ea92e54e4e70a216b8029"};
 var CATS=[['o','1000 MCQs'],['pma','PMA 159'],['fa','Forces Academy'],['hk','Hakeem'],['lc','PMA 158'],['pg','Pro Genius'],['nv','Non Verbal'],['cn','Constitution of Pakistan'],['iv','100 Most Repeated'],['en','Academic (English, Islamiat)'],['lf','Light Forces Academy'],['hf','Haroon Force Academy']];
 var $=function(i){return document.getElementById(i)},FB=window.FB,app=FB.initializeApp(CFG),auth=FB.getAuth(app),fs=FB.getFirestore(app);
+document.addEventListener('click',function(e){if(!e.target.closest||!e.target.closest('#bLzTest'))return;var o=document.getElementById('lzRes');o.textContent='Testing…';
+  function u8(b){var s=atob(b),a=new Uint8Array(s.length);for(var i=0;i<s.length;i++)a[i]=s.charCodeAt(i);return a}
+  var m;fetch('lz/chk.json?x='+Date.now()).then(function(r){return r.json()}).then(function(j){m=j;return FB.getDoc(FB.doc(fs,'catKeys','int'))}).then(function(d){if(!d.exists())throw new Error('catKeys/int is missing');return crypto.subtle.importKey('raw',new TextEncoder().encode(d.data().pw),'PBKDF2',false,['deriveKey'])})
+  .then(function(k){return crypto.subtle.deriveKey({name:'PBKDF2',salt:u8(m.salt),iterations:m.iter,hash:'SHA-256'},k,{name:'AES-GCM',length:256},false,['decrypt'])}).then(function(k){return crypto.subtle.decrypt({name:'AES-GCM',iv:u8(m.iv)},k,u8(m.ct))})
+  .then(function(b){var t=new TextDecoder().decode(b);o.innerHTML=t.indexOf('PMA')>-1?'<b style="color:#16a34a">✅ OK: the data lock key is correct.</b>':'<b style="color:#dc2626">❌ Wrong result</b>'}).catch(function(x){o.innerHTML='<b style="color:#dc2626">❌ FAILED: '+String(x&&x.message||x)+'</b>'})});
+
 var emu=location.hostname==='localhost'&&/[?&]emu=1/.test(location.search);
 if(emu){FB.connectAuthEmulator(auth,'http://127.0.0.1:9099',{disableWarnings:true});FB.connectFirestoreEmulator(fs,'127.0.0.1',8080);$('emuForm').style.display='block'}
 function say(m,bad){var d=document.createElement('div');d.className='msg';if(bad)d.style.background='#991b1b';d.textContent=m;$('msg').innerHTML='';$('msg').appendChild(d);setTimeout(function(){if(d.parentNode)d.remove()},6000)}
