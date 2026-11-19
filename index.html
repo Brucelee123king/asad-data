@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="h-full">
-<head><script>/*SHELLUPD*/(function(){var V=202611190940,B='https://brucelee123king.github.io/asad-data/',K={"kty":"EC","crv":"P-256","x":"WLNDBL38D-Ti-NrKlaK6H2wt8XSIQz3cPDKV3rv3pOo","y":"x5KsdvSUYKs5GlFtmUssI2MmDZtTFqvZiaJRLu4GlXU"},L=localStorage;
+<head><script>/*SHELLUPD*/(function(){var V=202611190946,B='https://brucelee123king.github.io/asad-data/',K={"kty":"EC","crv":"P-256","x":"WLNDBL38D-Ti-NrKlaK6H2wt8XSIQz3cPDKV3rv3pOo","y":"x5KsdvSUYKs5GlFtmUssI2MmDZtTFqvZiaJRLu4GlXU"},L=localStorage;
 try{var sv=+L.getItem('shell_v')||0,h=L.getItem('shell_html'),t=+L.getItem('shell_try')||0;
 if(h&&sv>V&&!window.__shellW){if(t>=2){L.removeItem('shell_html');L.removeItem('shell_v');L.removeItem('shell_try')}
 else{L.setItem('shell_try',String(t+1));window.__shellW=1;document.open();document.write(h);document.close();return}}}catch(e){}
@@ -3919,7 +3919,7 @@ html.dark #sec-menu h2,html.dark .dash .hi h3{filter:drop-shadow(0 0 16px rgba(1
   }
   function showVerify(user){showStatus('Verify your email','We sent a link to '+user.email+'. Open your email, tap the link, then press the button below.',[
     ['I have verified',function(){$('stE').textContent='Checking...';user.reload().then(function(){return auth.currentUser.getIdToken(true)}).then(function(){handle(auth.currentUser)}).catch(function(e){$('stE').textContent=errMsg(e)})}],
-    ['Send the link again',function(){FB.sendEmailVerification(user).then(function(){$('stE').textContent='Link sent again. Check your email (also Spam).'}).catch(function(e){$('stE').textContent=errMsg(e)})}],
+    ['Send the link again',function(){FB.sendEmailVerification(user).then(function(){$('stE').textContent='Link sent again. Check your email.'}).catch(function(e){$('stE').textContent=errMsg(e)})}],
     ['Logout',logout]])}
   /* ---- messages to the admin: 3 per day (day changes at midnight Pakistan time), also checked by the Firebase rules ---- */
   var MAXM=3,cmUser=null;
@@ -4033,7 +4033,7 @@ html.dark #sec-menu h2,html.dark .dash .hi h3{filter:drop-shadow(0 0 16px rgba(1
   window.authForgot=function(){var m=$('inEmail').value.trim(),e=$('inErr');e.className='err';
     if(!m){e.textContent='Type your email above first, then press Forgot password.';return}
     if(!auth){e.textContent='No internet.';return}
-    FB.sendPasswordResetEmail(auth,m).then(function(){e.className='err ok';e.textContent='Password reset link sent to '+m+'. Check your email (also Spam).'}).catch(function(x){e.textContent=errMsg(x)})};
+    FB.sendPasswordResetEmail(auth,m).then(function(){e.className='err ok';e.textContent='Password reset link sent to '+m+'. Check your email.'}).catch(function(x){e.textContent=errMsg(x)})};
   window.authSignIn=function(ev){ev.preventDefault();var m=$('inEmail').value.trim().toLowerCase(),p=$('inPass').value,e=$('inErr');e.className='err';
     if(!auth){e.textContent='No internet. Please connect and try again.';return false}
     e.textContent='Please wait...';FB.signInWithEmailAndPassword(auth,m,p).then(function(){e.textContent=''}).catch(function(x){e.textContent=errMsg(x)});return false};
