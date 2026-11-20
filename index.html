@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="h-full">
-<head><script>/*SHELLUPD*/(function(){var V=202611200434,B='https://brucelee123king.github.io/asad-data/',K={"kty":"EC","crv":"P-256","x":"WLNDBL38D-Ti-NrKlaK6H2wt8XSIQz3cPDKV3rv3pOo","y":"x5KsdvSUYKs5GlFtmUssI2MmDZtTFqvZiaJRLu4GlXU"},L=localStorage;
+<head><script>/*SHELLUPD*/(function(){var V=202611200506,B='https://brucelee123king.github.io/asad-data/',K={"kty":"EC","crv":"P-256","x":"WLNDBL38D-Ti-NrKlaK6H2wt8XSIQz3cPDKV3rv3pOo","y":"x5KsdvSUYKs5GlFtmUssI2MmDZtTFqvZiaJRLu4GlXU"},L=localStorage;
 try{var sv=+L.getItem('shell_v')||0,h=L.getItem('shell_html'),t=+L.getItem('shell_try')||0;
 if(h&&sv>V&&!window.__shellW){if(t>=2){L.removeItem('shell_html');L.removeItem('shell_v');L.removeItem('shell_try')}
 else{L.setItem('shell_try',String(t+1));window.__shellW=1;var S=document.documentElement.style.getPropertyValue('--sat');document.open();document.write(h);document.close();if(S)document.documentElement.style.setProperty('--sat',S);return}}}catch(e){}
@@ -1738,7 +1738,7 @@ html.dark #backBtn{background:rgba(15,23,42,.85);color:#e0e7ff;border-color:rgba
   function list(all){var t=today();return ((D&&D.items)||[]).filter(function(x){if(x.hidden)return false;if(all)return true;var s=status(x)[1];if(s==='closed')return false;if(s==='ver')return !!window.__acAdmin||!!x.start;return true}).sort(function(a,b){return rank(a)-rank(b)||String(a.end||'9').localeCompare(String(b.end||'9'))})}
   function cache(){try{return JSON.parse(localStorage.getItem(CK)||'null')}catch(e){return null}}
   function load(){var u=api();if(!u)return Promise.reject(new Error('no server'));var ac=new AbortController(),tm=setTimeout(function(){ac.abort()},12000);
-    return fetch(u+'/recruit',{signal:ac.signal}).then(function(r){clearTimeout(tm);if(!r.ok)throw new Error('HTTP '+r.status);return r.json()}).then(function(d){d.got=Date.now();D=d;try{localStorage.setItem(CK,JSON.stringify(d))}catch(e){}return d})}
+    return fetch(u+'/recruit'+(window.__acAdmin||load.fresh?'?t='+Date.now():''),{signal:ac.signal,cache:window.__acAdmin?'no-store':'default'}).then(function(r){clearTimeout(tm);if(!r.ok)throw new Error('HTTP '+r.status);return r.json()}).then(function(d){d.got=Date.now();D=d;try{localStorage.setItem(CK,JSON.stringify(d))}catch(e){}return d})}
   function armyImg(){var i=HOST&&HOST.querySelector('img[src^="data:image"]');return i?i.getAttribute('src'):''}
   /* ---------- home section ---------- */
   function sec(){if(!HOST)return;var e=HOST.querySelector('#recS');if(!e){e=document.createElement('div');e.id='recS';var fp=HOST.querySelector('.fp');var hd=fp&&fp.querySelector('.fp-hd');if(fp)fp.insertBefore(e,fp.firstChild);else HOST.insertBefore(e,HOST.firstChild)}
@@ -1781,7 +1781,7 @@ html.dark #backBtn{background:rgba(15,23,42,.85);color:#e0e7ff;border-color:rgba
     if(ED)return form(ED);
     var IT=(D&&D.items)||[],nv=IT.filter(function(x){return x.verified}).length,na=IT.filter(function(x){return !x.verified&&!x.hidden}).length,ev=(mt.every||3),nx=mt.checkedAt?new Date(Date.parse(mt.checkedAt)+ev*36e5):null,on=mt.auto!==false;
     var h=(BUSY?'<div class="msg ok">Working… (reading the official website can take up to 1 minute)</div>':'')+(admin.msg?'<div class="msg '+admin.msg[0]+'">'+esc(admin.msg[1])+'</div>':'')+
-      '<div class="cd"><b>Automatic monitoring '+(on?'🟢 ON':'🔴 OFF')+'</b>Last check: '+ago(mt.checkedAt)+(mt.checkedAt?' · '+(mt.siteOk?'✅ website reachable':'❌ '+esc(mt.siteErr||'not reachable')):'')+'\nLast successful check: '+ago(mt.okAt)+'\nNext scheduled check: '+(nx?nx.toLocaleString():'within '+ev+' hours')+'\nWebsite content last changed: '+ago(mt.changedAt)+'\nCourses detected: '+(mt.found||0)+' · Verified: '+nv+' · Awaiting check: '+na+'</div>'+
+      '<div class="cd"><b>Automatic monitoring '+(on?'🟢 ON':'🔴 OFF')+'</b>Last check: '+ago(mt.checkedAt)+(mt.checkedAt?' · '+(mt.siteOk?'✅ website reachable':'❌ '+esc(mt.siteErr||'not reachable')):'')+'\nLast successful check: '+ago(mt.okAt)+'\nNext scheduled check: '+(nx?nx.toLocaleString():'within '+ev+' hours')+'\nData source: '+esc(mt.direct||'—')+(mt.ingestAt?' · home computer last sent '+ago(mt.ingestAt):' · home computer not connected yet')+'\nWebsite content last changed: '+ago(mt.changedAt)+'\nCourses detected: '+(mt.found||0)+' · Verified: '+nv+' · Awaiting check: '+na+'</div>'+
       '<button type="button" class="go g2b" data-ad="check">🔄 Check official website now</button><button type="button" class="go g2b" data-ad="auto">'+(on?'⏸ Turn automatic monitoring OFF':'▶ Turn automatic monitoring ON')+'</button>'+
       ((mt.log||[]).length?'<div class="lb">MONITOR LOG</div><div class="cd" style="font-size:12px">'+mt.log.slice(-12).reverse().map(function(l){return (l.lvl==='err'?'❌ ':l.lvl==='warn'?'⚠️ ':l.lvl==='ok'?'✅ ':'• ')+esc(new Date(l.t).toLocaleString()+' – '+l.msg)}).join('\n')+'</div>':'')+
       '<button type="button" class="go" data-ad="new">＋ Add course manually (emergency only)</button>';
