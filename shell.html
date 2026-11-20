@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="h-full">
-<head><script>/*SHELLUPD*/(function(){var V=202611200209,B='https://brucelee123king.github.io/asad-data/',K={"kty":"EC","crv":"P-256","x":"WLNDBL38D-Ti-NrKlaK6H2wt8XSIQz3cPDKV3rv3pOo","y":"x5KsdvSUYKs5GlFtmUssI2MmDZtTFqvZiaJRLu4GlXU"},L=localStorage;
+<head><script>/*SHELLUPD*/(function(){var V=202611200232,B='https://brucelee123king.github.io/asad-data/',K={"kty":"EC","crv":"P-256","x":"WLNDBL38D-Ti-NrKlaK6H2wt8XSIQz3cPDKV3rv3pOo","y":"x5KsdvSUYKs5GlFtmUssI2MmDZtTFqvZiaJRLu4GlXU"},L=localStorage;
 try{var sv=+L.getItem('shell_v')||0,h=L.getItem('shell_html'),t=+L.getItem('shell_try')||0;
 if(h&&sv>V&&!window.__shellW){if(t>=2){L.removeItem('shell_html');L.removeItem('shell_v');L.removeItem('shell_try')}
 else{L.setItem('shell_try',String(t+1));window.__shellW=1;var S=document.documentElement.style.getPropertyValue('--sat');document.open();document.write(h);document.close();if(S)document.documentElement.style.setProperty('--sat',S);return}}}catch(e){}
@@ -5218,7 +5218,7 @@ function BOOT(D0){var D=D0,IM='';
     var h='<div class="anote">ℹ️ '+NOTE+'</div>'+(S.err?'<div class="aer">'+esc(S.err)+'</div>':'');
     h+='<div class="alb">1 · Which test?</div><div class="agw">'+TY.map(function(t){return '<button type="button" class="aty'+(S.ty===t[0]?' on':'')+'" data-ty="'+t[0]+'"><b>'+t[1]+' '+t[2]+'</b><small>'+t[3]+'</small></button>'}).join('')+'</div>';
     h+='<div class="alb">2 · Your answers</div><div class="aseg"><button type="button" data-md="type" class="'+(S.md==='type'?'on':'')+'">⌨️ Type</button><button type="button" data-md="photo" class="'+(S.md==='photo'?'on':'')+'">📷 Photo of paper</button></div>';
-    if(S.md==='photo'){h+='<p style="font-size:12.5px;color:#6b6146;margin:8px 2px">Take clear photos in good light, one page per photo (up to 5). The AI reads your handwriting, then you can correct it before checking.</p><div class="aph">'+S.imgs.map(function(s,i){return '<div><img src="'+s+'" alt=""><button type="button" data-rmi="'+i+'">✕</button></div>'}).join('')+'</div><label class="ago g2" style="text-align:center">📷 Add photo<input type="file" accept="image/*" multiple data-file="1" style="display:none"></label>'+(S.imgs.length?'<button type="button" class="ago" data-ocr="1">Read my handwriting →</button>':'')}
+    if(S.md==='photo'){h+='<p style="font-size:12.5px;color:#6b6146;margin:8px 2px">Take clear photos or screenshots in good light, one page per photo (up to 5). The AI reads your handwriting, then you can correct it before checking.</p><div class="aph">'+S.imgs.map(function(s,i){return '<div><img src="'+s+'" alt=""><button type="button" data-rmi="'+i+'">✕</button></div>'}).join('')+'</div><label class="ago g2" style="text-align:center">📷 Add photo<input type="file" accept="image/*" multiple data-file="1" style="display:none"></label>'+(S.imgs.length?'<button type="button" class="ago" data-ocr="1">Read my handwriting →</button>':'')}
     if(S.md==='type'||S.rows.length){if(!S.rows.length)S.rows=[{p:'',a:''}];var P=PL[S.ty];
       if(S.md==='photo')h+='<div class="alb">Check what the AI read</div><p style="font-size:12.5px;color:#6b6146;margin:-2px 2px 8px">Orange items were hard to read. Fix any mistakes. [?] means a word could not be read.</p>';
       h+=S.rows.map(function(r,i){return '<div class="arw'+(r.u?' un':'')+'"><label>'+(i+1)+'<button type="button" data-rmr="'+i+'">remove</button></label><input type="text" data-rp="'+i+'" placeholder="'+esc(P[0])+'" value="'+esc(r.p)+'"><textarea data-ra="'+i+'" rows="'+(/pointer|picture|selfdesc|essay/.test(S.ty)?6:2)+'" placeholder="'+esc(P[1])+'">'+esc(r.a)+'</textarea></div>'}).join('')+'<button type="button" class="ago g2" data-addr="1">＋ Add item</button><button type="button" class="ago" data-chk="1">🤖 Check My Performance</button>'}
@@ -5226,9 +5226,9 @@ function BOOT(D0){var D=D0,IM='';
     return h}
   function tyName(k){var t=TY.filter(function(z){return z[0]===k})[0];return t?t[2]:k}
   function report(){var R=S.res,pc=R.total?Math.round(100*R.got/R.total):0,prev=ls('psy_hist',[]).filter(function(x){return x.ai&&x.aty===S.ty}).slice(-2,-1)[0];
-    var h='<div class="asc"><div class="aring" style="--v:'+pc+'"><span>'+pc+'%<small>'+R.got+' / '+R.total+'</small></span></div><div><b>'+esc(tyName(S.ty))+' · AI report</b><p>'+esc(R.overall||'')+'</p>'+(prev?'<p>Last time: '+prev.sc+'% → now '+pc+'% '+(pc>prev.sc?'↑':pc<prev.sc?'↓':'→')+'</p>':'')+'</div></div><div class="anote">ℹ️ '+NOTE+'</div>';
+    var h='<div class="asc"><div class="aring" style="--v:'+pc+'"><span>'+pc+'%<small>'+R.got+' / '+R.total+'</small></span></div><div><b>'+esc(tyName(S.ty))+' · estimated practice score</b><p>'+esc(R.overall||'')+'</p>'+(prev?'<p>Last time: '+prev.sc+'% → now '+pc+'% '+(pc>prev.sc?'↑':pc<prev.sc?'↓':'→')+'</p>':'')+'</div></div><div class="anote">ℹ️ '+NOTE+'</div>';
     h+=lst('💪 Good points',R.strengths)+lst('🎯 Weak areas',R.weaknesses)+lst('🛠 How to improve',R.suggestions);
-    h+='<div class="alb">Every answer</div>'+(R.items||[]).map(function(x){var r=S.sent[x.n-1]||{},c=x.verdict==='good'?'#16a34a':x.verdict==='ok'?'#d97706':'#dc2626';return '<div class="ait" style="--c:'+c+'"><div class="h"><span>'+x.n+'. '+esc(r.p||'').slice(0,60)+'</span><span>'+x.marks+' / '+R.per+'</span></div><div class="a">'+esc(r.a||'—')+'</div>'+(x.good?'<div class="g">✓ '+esc(x.good)+'</div>':'')+(x.mistake?'<div class="m">✗ '+esc(x.mistake)+'</div>':'')+(x.better?'<div class="bt">💡 '+esc(x.better)+'</div>':'')+'</div>'}).join('');
+    h+='<div class="alb">Every answer</div>'+(R.items||[]).map(function(x){var r=S.sent[x.n-1]||{},c=x.verdict==='good'?'#16a34a':x.verdict==='ok'?'#d97706':'#dc2626';return '<div class="ait" style="--c:'+c+'"><div class="h"><span>'+x.n+'. '+esc(r.p||'').slice(0,60)+'</span><span>'+x.marks+' / '+R.per+'</span></div><div class="a">'+esc(r.a||'—')+'</div>'+(x.good?'<div class="g">✓ '+esc(x.good)+'</div>':'')+(x.mistake?'<div class="m">✗ '+esc(x.mistake)+'</div>':'')+(x.better?'<div class="bt">💡 <b>Model idea:</b> '+esc(x.better)+'</div>':'')+'</div>'}).join('');
     return h+'<button type="button" class="ago" data-again="1">Check another test</button>'+(R.left!=null?'<p style="text-align:center;font-size:12px;color:#6b6146">AI checks left today: '+R.left+'</p>':'')}
   function lst(t,a){return a&&a.length?'<div class="acd"><b>'+t+'</b><ul>'+a.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul></div>':''}
   function syncRows(){document.querySelectorAll('#aiPg [data-rp]').forEach(function(x){var r=S.rows[+x.getAttribute('data-rp')];if(r)r.p=x.value});document.querySelectorAll('#aiPg [data-ra]').forEach(function(x){var r=S.rows[+x.getAttribute('data-ra')];if(r)r.a=x.value})}
@@ -5301,10 +5301,11 @@ function BOOT(D0){var D=D0,IM='';
 #aiCh .xac span{margin-left:auto;font:600 10.5px system-ui;color:#9a8b6a}
 #aiCh .xer{background:#fef2f2;border:1px solid #fecaca;color:#991b1b;border-radius:14px;padding:10px 12px;font-size:13.5px;line-height:1.5}
 #aiCh .xer button{display:inline-block;margin-top:8px;border:0;background:#991b1b;color:#fff;border-radius:10px;padding:7px 12px;font:700 12.5px system-ui;cursor:pointer}
-#aiCh .xdots{display:inline-flex;gap:5px;padding:6px 2px}
-#aiCh .xdots i{width:8px;height:8px;border-radius:50%;background:#7c3aed;opacity:.35;animation:xdot 1.1s infinite ease-in-out}
-#aiCh .xdots i:nth-child(2){animation-delay:.16s;background:#a16207}#aiCh .xdots i:nth-child(3){animation-delay:.32s}
-@keyframes xdot{0%,80%,100%{transform:translateY(0);opacity:.35}40%{transform:translateY(-6px);opacity:1}}
+#aiCh .xdots{display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 4px}
+#aiCh .xdots i{width:8px;height:8px;border-radius:50%;background:#7c3aed;animation:xwave 1.2s infinite cubic-bezier(.45,0,.55,1);will-change:transform,opacity}
+#aiCh .xdots i:nth-child(2){background:#b794f6;animation-delay:.15s}#aiCh .xdots i:nth-child(3){background:#d6b26a;animation-delay:.3s}
+@keyframes xwave{0%,60%,100%{transform:translateY(0);opacity:.55}30%{transform:translateY(-5px);opacity:1}}
+#aiCh .xdg{font:600 10.5px system-ui;color:#9a8b6a;margin:4px 2px 0}
 #aiCh .xcur::after{content:'';display:inline-block;width:7px;height:15px;margin-left:2px;vertical-align:-2px;background:#7c3aed;border-radius:2px;animation:xbl 1s steps(2) infinite}
 @keyframes xbl{50%{opacity:0}}
 #aiCh .md h1,#aiCh .md h2,#aiCh .md h3,#aiCh .md h4{font:800 15.5px/1.35 'Plus Jakarta Sans',system-ui;margin:14px 0 6px;color:#1f2a44}
@@ -5373,9 +5374,11 @@ function BOOT(D0){var D=D0,IM='';
       var H=all().map(function(x,i){return [x,i]}).filter(function(z){return z[0].m&&z[0].m.length}).slice(-8).reverse();if(H.length)h+='<div class="xlb">RECENT CHATS</div><div class="xhl">'+H.map(function(z){return '<button type="button" data-oc="'+z[1]+'">💬 '+esc(z[0].m[0].text.slice(0,70))+'<small>'+new Date(z[0].t).toLocaleDateString()+'</small></button>'}).join('')+'</div>';return h}
     return c.m.map(function(m,i){return msg(m,i,i===c.m.length-1)}).join('')}
   function msg(m,i,last){if(m.role==='u')return '<div class="xm u"><div><div class="xbb">'+esc(m.text)+'</div><div class="xt">'+tm(m.ts)+'</div></div></div>';
-    var inner=m.err?'<div class="xer">⚠️ '+esc(m.err)+'<br><button type="button" data-rt="1">↻ Retry</button></div>':'<div class="xbb md'+(m.live?' xcur':'')+'" id="'+(m.live?'xLive':'')+'">'+(m.text?md(m.text):'<span class="xdots"><i></i><i></i><i></i></span>')+'</div>';
-    var acts=!m.err&&!m.live&&m.text?'<div class="xac"><button type="button" data-cp="'+i+'">⧉ Copy</button>'+(last?'<button type="button" data-rg="1">↻ Regenerate</button>':'')+'<span>'+tm(m.ts)+'</span></div>':'';
+    var inner=m.err?'<div class="xer">⚠️ '+esc(m.err)+'<br><button type="button" data-rt="1">↻ Retry</button></div>'+dgTxt(m.dg,1):'<div class="xbb md'+(m.live?' xcur':'')+'" id="'+(m.live?'xLive':'')+'">'+(m.text?md(m.text):'<span class="xdots"><i></i><i></i><i></i></span>')+'</div>';
+    var acts=!m.err&&!m.live&&m.text?'<div class="xac"><button type="button" data-cp="'+i+'">⧉ Copy</button>'+(last?'<button type="button" data-rg="1">↻ Regenerate</button>':'')+'<span>'+tm(m.ts)+'</span></div>'+dgTxt(m.dg,0):'';
     return '<div class="xm a"><span class="xa">🤖</span><div class="xc">'+inner+acts+'</div></div>'}
+  function sec(x){return x==null?'?':(x/1000).toFixed(1)+'s'}
+  function dgTxt(d,isErr){if(!d)return '';var dev=false;try{dev=localStorage.getItem('ai_dev')==='1'}catch(e){}if(!dev&&!isErr)return '';var h=[];if(d.m)h.push(d.m);if(d.first!=null)h.push('server first word '+sec(d.first));if(d.app)h.push('on screen '+sec(d.app));if(d.all)h.push('total '+sec(d.all));if(d.tries&&d.tries.length)h.push('tried: '+d.tries.map(function(t){return t.m+' '+t.s+' '+sec(t.ms)}).join(', '));return h.length?'<div class="xdg">⏱ '+esc(h.join(' · '))+'</div>':''}
   function down(force){var s=document.getElementById('xSc');if(!s)return;var near=s.scrollHeight-s.scrollTop-s.clientHeight<140;if(force||near)s.scrollTop=s.scrollHeight}
   function toast(t){var e=el();if(!e)return;var d=document.createElement('div');d.className='xtoast';d.textContent=t;e.appendChild(d);setTimeout(function(){d.remove()},1600)}
   function fitKb(){var vv=window.visualViewport;if(!vv||fitKb.on)return;fitKb.on=1;var f=function(){var e=el();if(!e)return;var sat=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--sat'))||0;e.style.height=Math.max(200,vv.height-sat+(vv.offsetTop>0?0:0))+'px';down()};vv.addEventListener('resize',f);vv.addEventListener('scroll',f)}
@@ -5386,24 +5389,24 @@ function BOOT(D0){var D=D0,IM='';
     var hist=c.m.filter(function(m){return !m.err&&m.text}).map(function(m){return {role:m.role==='ai'?'ai':'u',text:m.text}});
     upd(function(c){c.m.push({role:'ai',text:'',live:1,ts:Date.now()})});S.busy=true;render();
     if(!URL_){fail('AI is being set up. Please try again after the next update.');return}
-    var ctl=new AbortController();S.ctl=ctl;var got=false,txt='',raf=0,firstT=setTimeout(function(){if(!got)try{ctl.abort('slow')}catch(e){}},45000),allT=setTimeout(function(){try{ctl.abort('slow')}catch(e){}},150000);
+    var ctl=new AbortController();S.ctl=ctl;S.dg=null;var t0=Date.now(),tv=0,got=false,txt='',raf=0,firstT=setTimeout(function(){if(!got)try{ctl.abort('slow')}catch(e){}},60000),allT=setTimeout(function(){try{ctl.abort('slow')}catch(e){}},150000);
     var paint=function(){raf=0;var b=document.getElementById('xLive');if(b){b.innerHTML=md(txt);down()}};
-    var push=function(t){if(!got){got=true;clearTimeout(firstT)}txt+=t;if(!raf)raf=requestAnimationFrame(paint)};
+    var push=function(t){if(!got){got=true;tv=Date.now()-t0;clearTimeout(firstT)}txt+=t;if(!raf)raf=requestAnimationFrame(paint)};
     token().then(function(tk){return fetch(URL_.replace(/\/$/,'')+'/chat',{method:'POST',signal:ctl.signal,headers:{'content-type':'application/json',authorization:'Bearer '+tk},body:JSON.stringify({messages:hist,stream:true})})})
     .then(function(r){var ct=r.headers.get('content-type')||'';if(!r.ok||ct.indexOf('event-stream')<0)return r.json().catch(function(){return {error:'Server error ('+r.status+')'}}).then(function(d){if(d.error)throw new Error(d.error);if(d.reply)push(d.reply)});
       if(!r.body||!r.body.getReader)return r.text().then(function(all){all.split('\n').forEach(function(l){line(l,push)})});
       var rd=r.body.getReader(),dec=new TextDecoder(),buf='';
       return (function pump(){return rd.read().then(function(x){if(x.done)return;buf+=dec.decode(x.value,{stream:true});var k;while((k=buf.indexOf('\n'))>=0){var l=buf.slice(0,k);buf=buf.slice(k+1);line(l,push)}return pump()})})()})
-    .then(function(){clearTimeout(firstT);clearTimeout(allT);if(raf){cancelAnimationFrame(raf);raf=0}if(!txt)throw new Error('The AI gave no answer. Please try again.');done(txt)})
+    .then(function(){clearTimeout(firstT);clearTimeout(allT);if(raf){cancelAnimationFrame(raf);raf=0}if(!txt)throw new Error('The AI gave no answer. Please try again.');S.dg=Object.assign(S.dg||{},{app:tv,all:Date.now()-t0});done(txt)})
     .catch(function(e){clearTimeout(firstT);clearTimeout(allT);var aborted=ctl.signal.aborted;if(aborted&&txt){done(txt+(ctl.signal.reason==='slow'?'':'\n\n*(stopped)*'));return}
-      fail(aborted?(ctl.signal.reason==='slow'?'The AI took too long to answer. Please try again.':'Stopped.'):(e&&e.message&&!/fetch|network|load failed/i.test(e.message)?e.message:'Could not reach the AI. Check your internet and try again.'))})}
-  function line(l,push){l=l.trim();if(l.indexOf('data:')!==0)return;var p=l.slice(5).trim();if(p==='[DONE]')return;try{var d=JSON.parse(p);if(d.t)push(d.t);if(d.e)throw new Error(d.e)}catch(e){if(e&&e.message&&!/JSON|Unexpected/.test(e.message))throw e}}
-  function done(t){S.busy=false;S.ctl=null;upd(function(c){var m=c.m[c.m.length-1];if(m&&m.role==='ai'){m.text=t;delete m.live;m.ts=Date.now()}});render()}
-  function fail(msg){S.busy=false;S.ctl=null;upd(function(c){var m=c.m[c.m.length-1];if(m&&m.role==='ai'){m.err=msg;m.text='';delete m.live}});render()}
+      S.dg={tries:e&&e.tries,all:Date.now()-t0};fail(aborted?(ctl.signal.reason==='slow'?'The AI took too long to answer. Please try again.':'Stopped.'):(e&&e.message&&!/fetch|network|load failed/i.test(e.message)?e.message:'Could not reach the AI. Check your internet and try again.'))})}
+  function line(l,push){l=l.trim();if(l.indexOf('data:')!==0)return;var p=l.slice(5).trim();if(p==='[DONE]')return;var d;try{d=JSON.parse(p)}catch(e){return}if(d.t)push(d.t);if(d.m&&d.first!=null)S.dg={m:d.m,up:d.up,first:d.first};if(d.dn)S.dg=Object.assign(S.dg||{},d.dn);if(d.e){var er=new Error(d.e);er.tries=d.tries;throw er}}
+  function done(t){S.busy=false;S.ctl=null;var dg=S.dg;upd(function(c){var m=c.m[c.m.length-1];if(m&&m.role==='ai'){m.text=t;delete m.live;m.ts=Date.now();if(dg)m.dg=dg}});render()}
+  function fail(msg){S.busy=false;S.ctl=null;var dg=S.dg;upd(function(c){var m=c.m[c.m.length-1];if(m&&m.role==='ai'){m.err=msg;m.text='';delete m.live;if(dg)m.dg=dg}});render()}
   function send(t){t=String(t||'').trim();if(!t||S.busy)return;upd(function(c){c.m.push({role:'u',text:t.slice(0,3000),ts:Date.now()})});ask()}
   /* ---------- events ---------- */
   document.addEventListener('click',function(ev){var r=el();if(!r||!r.contains(ev.target))return;var t=ev.target,b;
-    if(t.closest('[data-xb]')){close();return}
+    if(t.closest('[data-xb]')){close();return}if(t.closest('.xtop .xav')){S.tp=(S.tp||0)+1;if(S.tp>=5){S.tp=0;var on=false;try{on=localStorage.getItem('ai_dev')==='1';localStorage.setItem('ai_dev',on?'0':'1')}catch(e){}toast(on?'Timing info off':'Timing info on');render()}return}
     if(t.closest('[data-xn]')){if(S.busy)stop();S.c=null;S.busy=false;render();return}
     if((b=t.closest('#xSd'))){if(S.busy){stop();return}var ta=document.getElementById('xTa');var v=ta&&ta.value;if(ta)ta.value='';send(v);return}
     if((b=t.closest('[data-sg]'))){send(b.getAttribute('data-sg'));return}
