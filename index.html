@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="h-full">
-<head><script>/*SHELLUPD*/(function(){var V=202611230921,B='https://brucelee123king.github.io/asad-data/',K={"kty":"EC","crv":"P-256","x":"WLNDBL38D-Ti-NrKlaK6H2wt8XSIQz3cPDKV3rv3pOo","y":"x5KsdvSUYKs5GlFtmUssI2MmDZtTFqvZiaJRLu4GlXU"},L=localStorage;
+<head><script>/*SHELLUPD*/(function(){var V=202611231059,B='https://brucelee123king.github.io/asad-data/',K={"kty":"EC","crv":"P-256","x":"WLNDBL38D-Ti-NrKlaK6H2wt8XSIQz3cPDKV3rv3pOo","y":"x5KsdvSUYKs5GlFtmUssI2MmDZtTFqvZiaJRLu4GlXU"},L=localStorage;
 try{var sv=+L.getItem('shell_v')||0,h=L.getItem('shell_html'),t=+L.getItem('shell_try')||0;
 if(h&&sv>V&&!window.__shellW){if(t>=2){L.removeItem('shell_html');L.removeItem('shell_v');L.removeItem('shell_try')}
 else{L.setItem('shell_try',String(t+1));window.__shellW=1;var S=document.documentElement.style.getPropertyValue('--sat');document.open();document.write(h);document.close();if(S)document.documentElement.style.setProperty('--sat',S);return}}}catch(e){}
@@ -181,7 +181,7 @@ html body #auth .side{padding-top:calc(64px + var(--sat))!important}
         @keyframes write{to{clip-path:inset(0 0 0 0)}}
         @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
     </style>
-<style id="acPre">html:not(.acok) body{background:#ddd6fe!important}html:not(.acok) body>header,html:not(.acok) body>main,html:not(.acok) body>footer,html:not(.acok) #modal-submit-confirm,html:not(.acok) #obj3d,html:not(.acok) #liquidBg,html:not(.acok) #srchModal,html:not(.acok) #rngModal{display:none!important}</style><link rel="icon" href="data:,">
+<style id="acPre">html:not(.acok) body{background:#fbf8f0!important}html:not(.acok) body>header,html:not(.acok) body>main,html:not(.acok) body>footer,html:not(.acok) #modal-submit-confirm,html:not(.acok) #obj3d,html:not(.acok) #liquidBg,html:not(.acok) #srchModal,html:not(.acok) #rngModal{display:none!important}</style><link rel="icon" href="data:,">
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans h-full flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
 
@@ -1395,17 +1395,43 @@ html.dark #auth .err{color:#ff8fa3}html.dark #auth .err.ok{color:#7ff0b8}
 @media (max-width:520px){#auth .wrap{padding:0 20px 18px;border-radius:26px}#auth .hero{width:170px;height:128px}#auth .row2{grid-template-columns:1fr}#auth .fi.i2,#auth .fi.i3,#auth .fi.i4{display:none}#auth .brand{left:18px;top:16px}}
 @media (prefers-reduced-motion:reduce){#auth *{animation:none!important}}
 </style>
+<style>
+#auth .guest,#auth .orr{display:none!important}
+#auth .gbtn{width:100%;margin-top:12px;height:48px;border-radius:16px;font-weight:700;font-size:14.5px;cursor:pointer;color:var(--tx);background:var(--gh);border:1px solid var(--fbd)}
+#auth .stb{width:100%;margin-top:10px;height:48px;border-radius:16px;font-weight:700;font-size:14.5px;cursor:pointer;color:var(--tx);background:var(--gh);border:1px solid var(--fbd)}
+#auth .mbox{margin:4px 0 6px;text-align:left}#auth .mbox label{display:block;font-size:12.5px;font-weight:600;color:var(--mu);margin:0 0 5px 3px}
+#auth .mbox textarea{width:100%;box-sizing:border-box;height:92px;padding:12px 14px;border-radius:16px;border:1px solid var(--fbd);background:var(--fb);color:var(--tx);font-size:15px;font-family:inherit;outline:none;resize:none}
+#auth .mbox .cnt{font-size:12.5px;margin:6px 3px 0;color:var(--mu)}#auth .mbox .ok{color:#16a34a;font-weight:600}
+#cmFab{position:fixed;right:16px;bottom:18px;z-index:2147482000;width:58px;height:58px;border-radius:50%;border:0;color:#fff;font-size:24px;background:linear-gradient(135deg,#0f766e,#14b8a6);box-shadow:0 8px 22px rgba(0,0,0,.35);display:none;align-items:center;justify-content:center;cursor:pointer}
+#cmBox{position:fixed;right:12px;bottom:88px;z-index:2147482500;width:min(350px,calc(100vw - 24px));background:#fff;color:#111827;border-radius:20px;padding:14px;box-sizing:border-box;box-shadow:0 14px 40px rgba(0,0,0,.35)}#cmBox[hidden]{display:none}
+#cmBox .cmh{display:flex;justify-content:space-between;align-items:center;font-size:18px;margin-bottom:6px}#cmBox .cmh button{background:#eef2ff;border:0;border-radius:12px;padding:5px 11px;font-size:15px;cursor:pointer}
+#cmBox .cml{max-height:150px;overflow:auto;display:flex;flex-direction:column;gap:6px;margin:4px 0 8px}#cmBox .cmb{align-self:flex-end;max-width:85%;background:#14b8a6;color:#fff;border-radius:14px 14px 4px 14px;padding:8px 11px;font-size:14px;word-break:break-word;white-space:pre-wrap}#cmBox .cme{font-size:13px;color:#64748b;text-align:center;padding:6px}
+#cmBox p{font-size:13px;color:#475569;margin:4px 0 8px}#cmBox textarea{width:100%;box-sizing:border-box;height:78px;border-radius:14px;border:2px solid #14b8a6;padding:9px;font-size:15px;font-family:inherit;resize:none;color:#111827;background:#fff}
+#cmBox .cnt{font-size:12px;color:#64748b;margin:5px 2px}#cmBox .cnt.ok{color:#16a34a;font-weight:600}#cmBox .err{font-size:12.5px;color:#dc2626;min-height:15px}
+#cmBox .btn{width:100%;height:44px;border:0;border-radius:14px;font-weight:700;font-size:15px;color:#fff;background:linear-gradient(90deg,#7c5cf5,#3a7bf5);cursor:pointer}#cmBox .btn:disabled{opacity:.5}
+#auth .stmsg{font-size:14px;line-height:1.5;text-align:center;margin:6px 0 12px;color:var(--tx)}
+</style>
+<style id="authPearl">
+/* login page in the same cream colours as the sign-up steps (#obWz) */
+#auth{--bg:#fbf8f0;--tx:#2b2416;--mu:#8a7a5a;--ln:#e1d8c4;--bb:linear-gradient(180deg,#fbf6ea,#ece2cb);--bt:#3b2f1a;--bd:#d9cba9;--ac:#8a6a2a;background:var(--bg)!important;color:var(--tx)!important}
+html.dark #auth{--bg:#1b1814;--tx:#f3eee2;--mu:#b9ab8c;--ln:#3d362c;--bb:linear-gradient(180deg,#3b342b,#2a251f);--bt:#f3eee2;--bd:#4b4338;--ac:#e2d3b0}
+#auth .sky,#auth .logo{display:none!important}
+#auth .side,#auth .wrap{background:transparent!important;box-shadow:none!important;border:0!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+#auth .wrap::before,#auth .wrap::after,#auth .side::before,#auth .side::after{display:none!important}
+#auth .brand,#auth .brand small,#auth h2{color:var(--tx)!important}
+#auth .pane .sub,#auth .copy,#auth .foot,#auth .orr,#auth .chk{color:var(--mu)!important}
+#auth .fld label{color:var(--mu)!important;font-weight:700}
+#auth .in{background:transparent!important;border:1.5px solid var(--ln)!important;border-radius:14px!important;color:var(--tx)!important;box-shadow:none!important;height:52px}
+#auth .in:focus{border-color:var(--ac)!important}
+#auth .in::placeholder{color:var(--mu)!important;opacity:.7}
+#auth .eye{color:var(--mu)!important}
+#auth .btn{background:var(--bb)!important;color:var(--bt)!important;border:1px solid var(--bd)!important;box-shadow:0 8px 20px rgba(120,95,40,.16)!important;border-radius:16px!important;height:54px;font-weight:800!important}
+#auth .btn::before,#auth .btn::after{display:none!important}
+#auth .guest,#auth .gbtn{background:transparent!important;color:var(--tx)!important;border:1.5px solid var(--ln)!important;box-shadow:none!important;border-radius:16px!important}
+#auth .opts a,#auth .foot a{color:var(--ac)!important;font-weight:800}
+#auth .chk input{accent-color:var(--ac)}
+</style>
 <div id="auth" role="dialog" aria-label="Student Login">
-  <div class="sky">
-    <div class="lyr" data-d="10"><i class="bl b1"></i><i class="bl b2"></i><i class="bl b3"></i></div>
-    <div class="lyr" data-d="26"><i class="sp a"></i><i class="sp b"></i><i class="sp c"></i><i class="sp d"></i></div>
-    <div class="lyr" data-d="40">
-      <div class="fi i1"><svg viewBox="0 0 64 64"><defs><linearGradient id="aB" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a78bfa"/><stop offset="1" stop-color="#5b3fd6"/></linearGradient></defs><path d="M6 14c8-3 18-3 26 3v37c-8-6-18-6-26-3z" fill="url(#aB)"/><path d="M58 14c-8-3-18-3-26 3v37c8-6 18-6 26-3z" fill="url(#aB)" opacity=".8"/><path d="M12 22c6-1.5 12-1 16 2M12 30c6-1.5 12-1 16 2M52 22c-6-1.5-12-1-16 2M52 30c-6-1.5-12-1-16 2" stroke="#fff" stroke-width="2.4" stroke-linecap="round" fill="none" opacity=".85"/></svg></div>
-      <div class="fi i2"><svg viewBox="0 0 64 64"><defs><linearGradient id="aP" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fde68a"/><stop offset="1" stop-color="#f59e0b"/></linearGradient></defs><g transform="rotate(40 32 32)"><rect x="25" y="4" width="14" height="40" rx="3" fill="url(#aP)"/><rect x="25" y="4" width="14" height="7" rx="3" fill="#f9a8d4"/><path d="M25 44h14l-7 15z" fill="#fde7c3"/><path d="M29.500 53h5l-2.500 6z" fill="#334155"/><path d="M29 12v32" stroke="#fff" stroke-width="2" opacity=".6"/></g></svg></div>
-      <div class="fi i3"><svg viewBox="0 0 64 64"><defs><linearGradient id="aL" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fef08a"/><stop offset="1" stop-color="#f59e0b"/></linearGradient></defs><path d="M32 5c-10 0-18 7.500-18 17 0 6.500 3.500 10.500 7 14.500 2 2.300 3 4 3 7h16c0-3 1-4.700 3-7 3.500-4 7-8 7-14.500C50 12.500 42 5 32 5z" fill="url(#aL)"/><rect x="23" y="46" width="18" height="5" rx="2.500" fill="#94a3b8"/><rect x="25" y="53" width="14" height="5" rx="2.500" fill="#64748b"/><path d="M26 22c1-4 4-6 8-6" stroke="#fff" stroke-width="3" stroke-linecap="round" fill="none" opacity=".8"/></svg></div>
-      <div class="fi i4"><svg viewBox="0 0 64 64"><defs><linearGradient id="aC" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f0abfc"/><stop offset="1" stop-color="#c026d3"/></linearGradient></defs><circle cx="32" cy="34" r="22" fill="url(#aC)"/><circle cx="32" cy="34" r="17" fill="#fff" opacity=".92"/><path d="M32 34V23M32 34l8 5" stroke="#6d28d9" stroke-width="3.200" stroke-linecap="round"/><path d="M22 8l-6 6M42 8l6 6" stroke="#c026d3" stroke-width="5" stroke-linecap="round"/></svg></div>
-    </div>
-  </div>
   <div class="brand"><i style="background:#fff"><span class="capimg" style="width:30px;height:30px"></span></i><div>PMA<small>PREPARATION</small></div></div>
   <div class="logo" id="authLogo"><span class="ring"></span><span class="mk"><span class="capimg" style="width:78px;height:78px"></span></span></div>
   <div class="side"><div class="wrap">
@@ -3892,22 +3918,7 @@ html.dark #sec-menu h2,html.dark .dash .hi h3{filter:drop-shadow(0 0 16px rgba(1
 </script>
 
 <script src="fb.js"></script>
-<style>
-#auth .guest,#auth .orr{display:none!important}
-#auth .gbtn{width:100%;margin-top:12px;height:48px;border-radius:16px;font-weight:700;font-size:14.5px;cursor:pointer;color:var(--tx);background:var(--gh);border:1px solid var(--fbd)}
-#auth .stb{width:100%;margin-top:10px;height:48px;border-radius:16px;font-weight:700;font-size:14.5px;cursor:pointer;color:var(--tx);background:var(--gh);border:1px solid var(--fbd)}
-#auth .mbox{margin:4px 0 6px;text-align:left}#auth .mbox label{display:block;font-size:12.5px;font-weight:600;color:var(--mu);margin:0 0 5px 3px}
-#auth .mbox textarea{width:100%;box-sizing:border-box;height:92px;padding:12px 14px;border-radius:16px;border:1px solid var(--fbd);background:var(--fb);color:var(--tx);font-size:15px;font-family:inherit;outline:none;resize:none}
-#auth .mbox .cnt{font-size:12.5px;margin:6px 3px 0;color:var(--mu)}#auth .mbox .ok{color:#16a34a;font-weight:600}
-#cmFab{position:fixed;right:16px;bottom:18px;z-index:2147482000;width:58px;height:58px;border-radius:50%;border:0;color:#fff;font-size:24px;background:linear-gradient(135deg,#0f766e,#14b8a6);box-shadow:0 8px 22px rgba(0,0,0,.35);display:none;align-items:center;justify-content:center;cursor:pointer}
-#cmBox{position:fixed;right:12px;bottom:88px;z-index:2147482500;width:min(350px,calc(100vw - 24px));background:#fff;color:#111827;border-radius:20px;padding:14px;box-sizing:border-box;box-shadow:0 14px 40px rgba(0,0,0,.35)}#cmBox[hidden]{display:none}
-#cmBox .cmh{display:flex;justify-content:space-between;align-items:center;font-size:18px;margin-bottom:6px}#cmBox .cmh button{background:#eef2ff;border:0;border-radius:12px;padding:5px 11px;font-size:15px;cursor:pointer}
-#cmBox .cml{max-height:150px;overflow:auto;display:flex;flex-direction:column;gap:6px;margin:4px 0 8px}#cmBox .cmb{align-self:flex-end;max-width:85%;background:#14b8a6;color:#fff;border-radius:14px 14px 4px 14px;padding:8px 11px;font-size:14px;word-break:break-word;white-space:pre-wrap}#cmBox .cme{font-size:13px;color:#64748b;text-align:center;padding:6px}
-#cmBox p{font-size:13px;color:#475569;margin:4px 0 8px}#cmBox textarea{width:100%;box-sizing:border-box;height:78px;border-radius:14px;border:2px solid #14b8a6;padding:9px;font-size:15px;font-family:inherit;resize:none;color:#111827;background:#fff}
-#cmBox .cnt{font-size:12px;color:#64748b;margin:5px 2px}#cmBox .cnt.ok{color:#16a34a;font-weight:600}#cmBox .err{font-size:12.5px;color:#dc2626;min-height:15px}
-#cmBox .btn{width:100%;height:44px;border:0;border-radius:14px;font-weight:700;font-size:15px;color:#fff;background:linear-gradient(90deg,#7c5cf5,#3a7bf5);cursor:pointer}#cmBox .btn:disabled{opacity:.5}
-#auth .stmsg{font-size:14px;line-height:1.5;text-align:center;margin:6px 0 12px;color:var(--tx)}
-</style>
+
 <script>
 (function(){
   var CFG={"apiKey": "AIzaSyAmvsyy3lNoqZi7vLHnfY-2wScyxir2SpU", "authDomain": "asadullah-notes.firebaseapp.com", "projectId": "asadullah-notes", "storageBucket": "asadullah-notes.firebasestorage.app", "messagingSenderId": "497117042188", "appId": "1:497117042188:web:9ea92e54e4e70a216b8029"},ADMIN='asadullah75t@gmail.com',EXP=2*864e5,ALLCATS=['o','pma','fa','hk','lc','pg','nv','cn','iv','en','lf','hf'];
@@ -4188,10 +4199,14 @@ html.dark #sec-menu h2,html.dark .dash .hi h3{filter:drop-shadow(0 0 16px rgba(1
   function cmOff(){cmOn=false;cmUser=null;var b=$('cmBox'),f=$('cmFab');if(b)b.hidden=true;if(f)f.style.display='none'}
   /* ---- one phone per account: the account works only on the phone where it was first used (the admin can reset it) ---- */
   function devId(){var r=ls('ac_dev');if(!r||r.length!==32){var a=new Uint8Array(16);crypto.getRandomValues(a);r=Array.prototype.map.call(a,function(x){return ('0'+x.toString(16)).slice(-2)}).join('');ls('ac_dev',r)}return r}
-  function devCheck(user){var ref=FB.doc(fs,'devices',user.uid),me=devId();
-    return FB.getDoc(ref).then(function(d){if(d.exists())return d.data().r===me?'ok':'locked';
-      return FB.setDoc(ref,{r:me,t:FB.serverTimestamp()}).then(function(){return 'ok'},function(e){return /permission/.test((e&&e.code)||'')?'locked':'unknown'})}).catch(function(){return 'unknown'})}
-  function showDevLocked(){showStatus('Account locked to another phone','This account is already used on another phone. One account works on one phone only. If this is your new phone, ask the admin to reset your phone, then log in again.',[['Check again',function(){handle(auth.currentUser)}],['Logout',logout]])}
+  /* device rule A: one phone (app, slot r) + one computer/browser (slot w) per student */
+  function devCheck(user){var ref=FB.doc(fs,'devices',user.uid),me=devId(),k=webview?'r':'w';
+    return FB.getDoc(ref).then(function(d){var x=d.exists()?d.data():null;
+      if(x&&typeof x[k]==='string')return x[k]===me?'ok':'locked';
+      var o={t:FB.serverTimestamp()};o[k]=me;
+      return FB.setDoc(ref,o,{merge:true}).then(function(){return 'ok'},function(e){return /permission/.test((e&&e.code)||'')?'locked':'unknown'})}).catch(function(){return 'unknown'})}
+  function showDevLocked(){if(webview)showStatus('Account locked to another phone','This account is already used on another phone. One account works on one phone and one computer/browser. If this is your new phone, ask the admin to reset your devices, then log in again.',[['Check again',function(){handle(auth.currentUser)}],['Logout',logout]]);
+    else showStatus('Account locked to another browser','This account is already used in another computer or browser. One account works on one phone and one computer/browser. If this is your new computer, ask the admin to reset your devices, then log in again.',[['Check again',function(){handle(auth.currentUser)}],['Logout',logout]])}
   function showBlocked(){showStatus('Access stopped','Your access was stopped by the admin. Please contact him.',[['Logout',logout]])}
   function logout(){var p=auth?FB.signOut(auth):Promise.resolve();return p.catch(function(){}).then(function(){cur=null;leave();showLogin()})}
   /* ---- the forms of the old login page now talk to Firebase ---- */
@@ -4228,26 +4243,7 @@ html.dark #sec-menu h2,html.dark .dash .hi h3{filter:drop-shadow(0 0 16px rgba(1
   }
 })();
 </script>
-<style id="authPearl">
-/* login page in the same cream colours as the sign-up steps (#obWz) */
-#auth{--bg:#fbf8f0;--tx:#2b2416;--mu:#8a7a5a;--ln:#e1d8c4;--bb:linear-gradient(180deg,#fbf6ea,#ece2cb);--bt:#3b2f1a;--bd:#d9cba9;--ac:#8a6a2a;background:var(--bg)!important;color:var(--tx)!important}
-html.dark #auth{--bg:#1b1814;--tx:#f3eee2;--mu:#b9ab8c;--ln:#3d362c;--bb:linear-gradient(180deg,#3b342b,#2a251f);--bt:#f3eee2;--bd:#4b4338;--ac:#e2d3b0}
-#auth .sky,#auth .logo{display:none!important}
-#auth .side,#auth .wrap{background:transparent!important;box-shadow:none!important;border:0!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
-#auth .wrap::before,#auth .wrap::after,#auth .side::before,#auth .side::after{display:none!important}
-#auth .brand,#auth .brand small,#auth h2{color:var(--tx)!important}
-#auth .pane .sub,#auth .copy,#auth .foot,#auth .orr,#auth .chk{color:var(--mu)!important}
-#auth .fld label{color:var(--mu)!important;font-weight:700}
-#auth .in{background:transparent!important;border:1.5px solid var(--ln)!important;border-radius:14px!important;color:var(--tx)!important;box-shadow:none!important;height:52px}
-#auth .in:focus{border-color:var(--ac)!important}
-#auth .in::placeholder{color:var(--mu)!important;opacity:.7}
-#auth .eye{color:var(--mu)!important}
-#auth .btn{background:var(--bb)!important;color:var(--bt)!important;border:1px solid var(--bd)!important;box-shadow:0 8px 20px rgba(120,95,40,.16)!important;border-radius:16px!important;height:54px;font-weight:800!important}
-#auth .btn::before,#auth .btn::after{display:none!important}
-#auth .guest,#auth .gbtn{background:transparent!important;color:var(--tx)!important;border:1.5px solid var(--ln)!important;box-shadow:none!important;border-radius:16px!important}
-#auth .opts a,#auth .foot a{color:var(--ac)!important;font-weight:800}
-#auth .chk input{accent-color:var(--ac)}
-</style>
+
 
 <style>
 #rsDim{position:fixed;inset:0;z-index:2147483000;background:rgba(15,23,42,.45);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);opacity:0;pointer-events:none;transition:opacity .2s}

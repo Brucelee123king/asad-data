@@ -188,9 +188,9 @@ function msgs(u){var out=[],m=MSGS[u.id],ds=(DAYS[u.id]||[]).slice().sort(functi
   if(m&&m.n){for(var j=m.n;j>=1;j--){if(!m['m'+j])continue;var t2='';try{t2=m['t'+j].toDate().toLocaleString()}catch(e){}out.push({t:t2,m:m['m'+j],n:j,k:'first'})}}
   if(!out.length)return '';var more=out.length>12?out.length-12:0;
   return out.slice(0,12).map(function(o){return '<div class="mq"><div class="mu">'+(o.t?esc(o.t):'Message')+'</div>'+esc(o.m)+'</div>'}).join('')+(more?'<div class="mu" style="margin-top:6px">... and '+more+' older messages</div>':'')}
-function devLine(u){var d=DEVS[u.id];if(!d)return '<div class="mu">Phone: not used yet</div>';var t='';try{t=d.t.toDate().toLocaleString()}catch(e){}return '<div class="mu">Phone: locked to one phone'+(t?' (since '+esc(t)+')':'')+'</div>'}
+function devLine(u){var d=DEVS[u.id];if(!d)return '<div class="mu">Devices: not used yet</div>';var t='';try{t=d.t.toDate().toLocaleString()}catch(e){}return '<div class="mu">Phone: '+(d.r?'locked to one phone':'not used yet')+' · Computer/browser: '+(d.w?'locked to one browser':'not used yet')+(t?' (last change '+esc(t)+')':'')+'</div>'}
 function card(u){return '<div class="card" data-cb="'+combo(u)+'" data-id="'+u.id+'" data-s="'+esc(((u.email||'')+' '+(u.name||'')).toLowerCase())+'"><b>'+esc(u.email)+'</b> <span class="tag '+u.status+'">'+u.status+'</span><div class="mu">'+esc(u.name||'')+' '+esc(ts(u))+'</div>'+devLine(u)+msgs(u)+chips(u)+
- '<div class="row"><button class="k" data-a="ok">'+(u.status==='approved'?'Save':'Approve')+'</button>'+(u.status==='blocked'?'':'<button class="r" data-a="block">Block</button>')+'<button class="g" data-a="del">Delete</button>'+(DEVS[u.id]?'<button class="g" data-a="dev">Reset phone</button>':'')+'</div></div>'}
+ '<div class="row"><button class="k" data-a="ok">'+(u.status==='approved'?'Save':'Approve')+'</button>'+(u.status==='blocked'?'':'<button class="r" data-a="block">Block</button>')+'<button class="g" data-a="del">Delete</button>'+(DEVS[u.id]?'<button class="g" data-a="dev">Reset devices</button>':'')+'</div></div>'}
 /* course access: who has Initial PMA (any of its categories), Interview, ISSB, and every mix of them */
 var ACCF='';
 function combo(u){if(u.status==='blocked')return 'B';var c=u.cats||[],i=CATS.some(function(x){return c.indexOf(x[0])>-1}),v=c.indexOf('int')>-1,s=c.indexOf('issb')>-1;return (i?'I':'')+(v?'V':'')+(s?'S':'')||'0'}
@@ -232,7 +232,7 @@ document.addEventListener('click',function(e){var b=e.target.closest('button[dat
   var ref=FB.doc(fs,'users',id),job;
   if(a==='ok'){if(!cats.length&&!confirm('Nothing ticked. Approve anyway? (He will see nothing)'))return;job=FB.updateDoc(ref,{status:'approved',cats:cats})}
   else if(a==='block'){if(!confirm('Block this person?'))return;job=FB.updateDoc(ref,{status:'blocked',cats:[]})}
-  else if(a==='dev'){if(!confirm('Reset the phone of this person? The next phone where he logs in becomes his phone.'))return;job=FB.deleteDoc(FB.doc(fs,'devices',id))}
+  else if(a==='dev'){if(!confirm('Reset the devices of this person? The next phone and the next computer/browser where he logs in become his devices.'))return;job=FB.deleteDoc(FB.doc(fs,'devices',id))}
   else if(a==='del'){if(!confirm('Delete this person completely (request, profile, phone lock, messages, payment)? Then also delete the login in Firebase > Authentication so the same email can sign up fresh.'))return;job=Promise.all(['profiles','devices','msgs','payproofs'].map(function(col){return FB.deleteDoc(FB.doc(fs,col,id)).catch(function(){})})).then(function(){return FB.deleteDoc(ref)})}
   job.then(function(){say(a==='ok'?'Saved. This person is in the People tab: open it any time to tick or untick.':'Done');return load()}).catch(function(x){say('Failed: '+(x.code||x.message),1)})});
 /* one password for the whole Initial PMA Preparation: saved into every category's key */
