@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Backup - ASAD PREPZONE (admin)</title>
+<style>
+:root{--bg:#f1f5f9;--cd:#fff;--tx:#0f172a;--mu:#64748b;--bd:#cbd5e1;--ac:#1f2a44;--gd:#b7791f;--ok:#16a34a;--no:#dc2626}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+.w{max-width:680px;margin:0 auto;padding:18px 14px 40px}
+h1{font-size:22px;margin:4px 0 2px}h2{font-size:16px;margin:0 0 8px}
+.cd{background:var(--cd);border:1px solid var(--bd);border-radius:14px;padding:14px;margin:12px 0}
+.mu{color:var(--mu);font-size:13px}
+button{border:0;border-radius:12px;padding:12px 14px;font:700 14px system-ui;background:var(--ac);color:#fff;cursor:pointer;width:100%;margin-top:8px}
+button.g{background:#e2e8f0;color:var(--tx)}button:disabled{opacity:.5}
+input{width:100%;border:1px solid var(--bd);border-radius:10px;padding:11px;font:15px system-ui;margin-top:6px}
+table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:8px}td,th{border-bottom:1px solid var(--bd);padding:6px 4px;text-align:left}
+.ok{color:var(--ok);font-weight:700}.no{color:var(--no);font-weight:700}.wa{color:#b45309;font-weight:700}
+.bar{height:8px;background:#e2e8f0;border-radius:8px;overflow:hidden;margin-top:8px}.bar i{display:block;height:100%;width:0;background:var(--gd);transition:width .3s}
+.ro{display:inline-block;background:#dcfce7;color:#166534;border-radius:99px;padding:3px 10px;font:700 12px system-ui}
+</style></head><body><div class="w">
+<h1>🛡️ Database backup</h1>
+<div class="mu">ASAD PREPZONE · admin only · <span class="ro">READ-ONLY</span> · encrypted on this device</div>
+
+<div class="cd" id="step1"><h2>1. Sign in as admin</h2>
+<div class="mu">Only the verified admin Google account can read the data (enforced by Firebase Security Rules on Google's servers).</div>
+<button id="login">Sign in with Google</button><div id="who" class="mu"></div></div>
+
+<div class="cd" id="step2" hidden><h2>2. Make an encrypted backup</h2>
+<div class="mu">Choose a strong passphrase. The backup is encrypted with AES-256 before it is saved. The passphrase is never stored or sent – if you forget it, this backup cannot be opened.</div>
+<input id="pw1" type="password" autocomplete="new-password" placeholder="Passphrase (at least 12 characters)">
+<input id="pw2" type="password" autocomplete="new-password" placeholder="Type it again">
+<button id="go">Start backup (read-only)</button>
+<div class="bar"><i id="pb"></i></div><div id="st" class="mu"></div>
+<table id="tb" hidden><thead><tr><th>Collection</th><th>1st read</th><th>2nd check</th><th></th></tr></thead><tbody></tbody></table></div>
+
+<div class="cd"><h2>Open a backup (offline)</h2>
+<div class="mu">Check a saved <b>.json.enc</b> file: it is decrypted only in this browser and only a summary is shown. Nothing is uploaded.</div>
+<input id="ff" type="file" accept=".enc,application/octet-stream,application/json">
+<input id="pw3" type="password" placeholder="Passphrase of that backup">
+<button id="open" class="g">Open and check</button><div id="os" class="mu"></div>
+<table id="ot" hidden><tbody></tbody></table></div>
+<p class="mu">This page contains no code that can write, change or delete database data.</p>
+</div>
+<script src="fb.js"></script>
+<script>
+(function(){
+  'use strict';
+  /* ---- READ-ONLY: take only reading functions, then remove the global library object ---- */
+  var B=window.FB||{};
+  var F={initializeApp:B.initializeApp,getAuth:B.getAuth,signInWithPopup:B.signInWithPopup,GoogleAuthProvider:B.GoogleAuthProvider,onAuthStateChanged:B.onAuthStateChanged,signOut:B.signOut,
+         getFirestore:B.getFirestore,collection:B.collection,collectionGroup:B.collectionGroup,getDocs:B.getDocs};
+  try{delete window.FB}catch(e){window.FB=undefined}
+  var CFG={"apiKey": "AIzaSyAmvsyy3lNoqZi7vLHnfY-2wScyxir2SpU", "authDomain": "asadullah-notes.firebaseapp.com", "projectId": "asadullah-notes", "storageBucket": "asadullah-notes.firebasestorage.app", "messagingSenderId": "497117042188", "appId": "1:497117042188:web:9ea92e54e4e70a216b8029"},ADMIN='asadullah75t@gmail.com';
+  var COLS=['online','stats','seen','devices','reports','payproofs','profiles','msgs','users']; /* users (approvals) last = newest */
+  var $=function(i){return document.getElementById(i)};
+  var app=F.initializeApp(CFG),auth=F.getAuth(app),db=F.getFirestore(app);
+  $('login').onclick=function(){F.signInWithPopup(auth,new F.GoogleAuthProvider()).catch(function(e){$('who').textContent='Sign-in failed: '+(e.code||e.message)})};
+  F.onAuthStateChanged(auth,function(u){
+    if(!u){$('who').textContent='Not signed in.';$('step2').hidden=true;return}
+    $('who').textContent='Signed in as '+u.email+(u.email.toLowerCase()===ADMIN?' ✅':' – not the admin; Firebase will refuse to give data.');
+    $('step2').hidden=u.email.toLowerCase()!==ADMIN});
+  /* ---- convert Firestore values to plain JSON (keeps timestamps exactly) ---- */
+  function plain(v){if(v===null||typeof v!=='object')return v;
+    if(typeof v.toMillis==='function'&&'seconds' in v&&'nanoseconds' in v)return {__ts:[v.seconds,v.nanoseconds]};
+    if(Array.isArray(v))return v.map(plain);
+    if(typeof v.toBase64==='function')return {__bytes:v.toBase64()};
+    if('latitude' in v&&'longitude' in v&&Object.keys(v).length===2)return {__geo:[v.latitude,v.longitude]};
+    if(v.path&&v.firestore)return {__ref:v.path};
+    var o={};Object.keys(v).forEach(function(k){o[k]=plain(v[k])});return o}
+  function readAll(ref){return F.getDocs(ref).then(function(s){var a={};s.forEach(function(d){a[d.ref.path]=plain(d.data())});return a})}
+  function size(o){return JSON.stringify(o).length}
+  /* ---- AES-256-GCM, key from passphrase with PBKDF2-SHA256 600,000 rounds ---- */
+  var ITER=600000,TE=new TextEncoder(),TD=new TextDecoder();
+  function key(pw,salt){return crypto.subtle.importKey('raw',TE.encode(pw),'PBKDF2',false,['deriveKey']).then(function(k){return crypto.subtle.deriveKey({name:'PBKDF2',salt:salt,iterations:ITER,hash:'SHA-256'},k,{name:'AES-GCM',length:256},false,['encrypt','decrypt'])})}
+  function b64(u){var s='';for(var i=0;i<u.length;i+=0x8000)s+=String.fromCharCode.apply(null,u.subarray(i,i+0x8000));return btoa(s)}
+  function unb64(s){var b=atob(s),u=new Uint8Array(b.length);for(var i=0;i<b.length;i++)u[i]=b.charCodeAt(i);return u}
+  function row(tb,cells){var tr=document.createElement('tr');cells.forEach(function(c){var td=document.createElement('td');if(c&&c.cls){td.className=c.cls;td.textContent=c.t}else td.textContent=c;tr.appendChild(td)});tb.appendChild(tr)}
+  $('go').onclick=function(){
+    var p1=$('pw1').value,p2=$('pw2').value;if(p1.length<12){$('st').textContent='Passphrase must be at least 12 characters.';return}if(p1!==p2){$('st').textContent='The two passphrases are different.';return}
+    var go=$('go');go.disabled=true;var tb=$('tb').querySelector('tbody');tb.innerHTML='';$('tb').hidden=false;
+    var out={app:'ASAD PREPZONE',project:CFG.projectId,format:1,exportStart:new Date().toISOString(),collections:{},check:{}},steps=COLS.length*2+2,n=0;
+    function prog(t){n++;$('pb').style.width=Math.round(100*n/steps)+'%';$('st').textContent=t}
+    var chain=Promise.resolve();
+    COLS.forEach(function(c){chain=chain.then(function(){prog('Reading '+c+'…');return readAll(F.collection(db,c)).then(function(a){out.collections[c]=a})})});
+    chain=chain.then(function(){prog('Reading all msgs/*/days…');return readAll(F.collectionGroup(db,'days')).then(function(a){out.collections['msgs/*/days']=a})});
+    /* second pass: read again; replace changed/new documents, mark removed ones */
+    var names=COLS.concat(['msgs/*/days']);
+    names.forEach(function(c){chain=chain.then(function(){prog('Checking '+c+' again…');return readAll(c==='msgs/*/days'?F.collectionGroup(db,'days'):F.collection(db,c)).then(function(b){
+      var a=out.collections[c],n1=Object.keys(a).length,ch=0,nw=0,gone=[];
+      Object.keys(b).forEach(function(p){if(!(p in a))nw++;else if(JSON.stringify(a[p])!==JSON.stringify(b[p]))ch++});
+      Object.keys(a).forEach(function(p){if(!(p in b))gone.push(p)});
+      out.collections[c]=b;out.check[c]={first:n1,second:Object.keys(b).length,changed:ch,added:nw,removed:gone};
+      var same=!ch&&!nw&&!gone.length;row(tb,[c,n1,Object.keys(b).length,{cls:same?'ok':'wa',t:same?'✅ same':'⚠️ changed ('+(ch+nw+gone.length)+') – newest kept'}])})})});
+    chain.then(function(){
+      out.exportEnd=new Date().toISOString();
+      out.total=Object.keys(out.collections).reduce(function(s,c){return s+Object.keys(out.collections[c]).length},0);
+      prog('Encrypting '+out.total+' documents…');
+      var salt=crypto.getRandomValues(new Uint8Array(16)),iv=crypto.getRandomValues(new Uint8Array(12));
+      return key(p1,salt).then(function(k){return crypto.subtle.encrypt({name:'AES-GCM',iv:iv},k,TE.encode(JSON.stringify(out)))}).then(function(ct){
+        var file=JSON.stringify({asadprepzone_backup:1,alg:'AES-256-GCM',kdf:'PBKDF2-SHA256',iter:ITER,salt:b64(salt),iv:b64(iv),created:out.exportEnd,ct:b64(new Uint8Array(ct))});
+        var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([file],{type:'application/octet-stream'}));a.download='asadprepzone-backup-'+out.exportEnd.slice(0,10)+'.json.enc';document.body.appendChild(a);a.click();a.remove();
+        var allSame=Object.keys(out.check).every(function(c){var x=out.check[c];return !x.changed&&!x.added&&!x.removed.length});
+        $('pb').style.width='100%';$('st').innerHTML='';var s=document.createElement('span');s.className=allSame?'ok':'wa';
+        s.textContent=(allSame?'✅ Backup complete: ':'⚠️ Saved, but some data changed during the backup (newest version kept). Run again at a quieter time for a perfectly matching copy. ')+out.total+' documents, file '+Math.round(file.length/1024)+' KB. Keep it in your encrypted 7-Zip archive.';$('st').appendChild(s);
+        $('pw1').value='';$('pw2').value='';go.disabled=false})
+    }).catch(function(e){$('st').innerHTML='';var s=document.createElement('span');s.className='no';s.textContent='❌ Stopped: '+(e.code==='permission-denied'?'Firebase refused (only the verified admin can read).':(e.message||e))+' Nothing was saved.';$('st').appendChild(s);go.disabled=false})
+  };
+  $('open').onclick=function(){var f=$('ff').files[0],pw=$('pw3').value;if(!f||!pw){$('os').textContent='Choose a file and type its passphrase.';return}
+    $('os').textContent='Decrypting…';f.text().then(function(t){var w=JSON.parse(t);if(!w.asadprepzone_backup)throw new Error('Not an ASAD PREPZONE backup file.');
+      return key(pw,unb64(w.salt)).then(function(k){return crypto.subtle.decrypt({name:'AES-GCM',iv:unb64(w.iv)},k,unb64(w.ct))})}).then(function(pt){
+      var d=JSON.parse(TD.decode(pt)),tb=$('ot').querySelector('tbody');tb.innerHTML='';$('ot').hidden=false;
+      row(tb,['Project',d.project]);row(tb,['Started',d.exportStart]);row(tb,['Finished',d.exportEnd]);row(tb,['Total documents',d.total]);
+      Object.keys(d.collections).forEach(function(c){var x=d.check&&d.check[c];row(tb,[c,Object.keys(d.collections[c]).length+(x&&(x.changed||x.added||x.removed.length)?' (changed during backup)':'')])});
+      $('os').innerHTML='';var s=document.createElement('span');s.className='ok';s.textContent='✅ Backup opened and readable.';$('os').appendChild(s);$('pw3').value=''})
+      .catch(function(e){$('os').innerHTML='';var s=document.createElement('span');s.className='no';s.textContent='❌ Could not open: '+(e&&e.name==='OperationError'?'wrong passphrase or damaged file.':(e.message||e));$('os').appendChild(s)})};
+})();
+</script></body></html>
